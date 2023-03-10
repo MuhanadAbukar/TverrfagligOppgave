@@ -1,0 +1,188 @@
+﻿
+
+.box {
+    width: 90%;
+    max-width: 450px;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 100px;
+    background: #222;
+    border-radius: 7px;
+    box-shadow: 0px 3px 10px 1px rgba(0, 0, 0, 0.9);
+}
+
+.content {
+    width: 85%;
+    height: auto;
+    margin: 0 auto;
+    padding: 30px 0px;
+    text-align: center;
+    font-family: 'Ubuntu Mono', sans-serif;
+}
+
+    .content h1 {
+        font-size: 24px;
+        font-weight: 400;
+        color: #ffffff;
+        letter-spacing: 0.125em;
+        text-align: center;
+    }
+.h1 {
+    font-size: 24px;
+    font-weight: 400;
+    color: #ffffff;
+    letter-spacing: 0.125em;
+    text-align: center;
+}
+.field {
+    width: 95%;
+    margin: 10px auto;
+    padding: 10px;
+    background: #2c2c2c;
+    border: none;
+    box-shadow: 0px 1px 0px 0px #111;
+    border-radius: 3px;
+    outline: none;
+    color: #ffffff;
+    font-weight: 700;
+    letter-spacing: 0.125em;
+    text-align: center;
+    resize: none;
+    
+}
+.btn {
+    width: 100%;
+    margin: 10px auto;
+    padding: 10px;
+    background: #161616;
+    border: none;
+    box-shadow: 0px 1px 0px 0px #111;
+    border-radius: 3px;
+    outline: none;
+    color: #ffffff;
+    font-weight: 700;
+    letter-spacing: 0.125em;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+    .btn:hover {
+        background: #d6cece;
+        color: #333;
+    }
+
+    .btn:active {
+        background: #ffffff;
+        color: #333;
+    }
+
+.width {
+    width: 100%;
+}
+.btn2 {
+    width: 100%;
+    margin: 10px auto;
+    padding: 8px; /* reduced from 10px */
+    background: #161616;
+    border: none;
+    box-shadow: 0px 1px 0px 0px #111;
+    border-radius: 2px; /* reduced from 3px */
+    outline: none;
+    color: #ffffff;
+    font-weight: 700;
+    letter-spacing: 0.125em;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 14px; /* reduced from 16px */
+}
+
+    .btn2:hover {
+        background: #d6cece;
+        color: #333;
+    }
+
+    .btn2:active {
+        background: #ffffff;
+        color: #333;
+    }
+
+.box2 {
+    width: 80%; /* reduced from 90% */
+    max-width: 350px; /* reduced from 450px */
+    height: auto;
+    margin: 0 auto;
+    margin-top: 50px; /* reduced from 100px */
+    background: #222;
+    border-radius: 5px; /* reduced from 7px */
+    box-shadow: 0px 3px 10px 1px rgba(0, 0, 0, 0.9);
+}
+
+.content2 {
+    width: 85%;
+    height: auto;
+    margin: 0 auto;
+    padding: 20px 0px; /* reduced from 30px */
+    text-align: center;
+    font-family: 'Ubuntu Mono', sans-serif;
+}
+
+    .content2 h1 {
+        font-size: 20px; /* reduced from 24px */
+        font-weight: 400;
+        color: #ffffff;
+        letter-spacing: 0.125em;
+        text-align: center;
+    }
+
+.field2 {
+    width: 95%;
+    margin: 10px auto;
+    padding: 8px; /* reduced from 10px */
+    background: #2c2c2c;
+    border: none;
+    box-shadow: 0px 1px 0px 0px #111;
+    border-radius: 2px; /* reduced from 3px */
+    outline: none;
+    color: #ffffff;
+    font-weight: 700;
+    letter-spacing: 0.125em;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 14px; /* reduced from 16px */
+}
+
+.Textbox {
+    height: 40px;
+    width: 400px;
+    padding: 10px;
+    font-size: 14px;
+    text-align: left;
+}
+
+.label {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Open Sans', sans-serif;
+}
+.button {
+    background-color: black; /* Set the background color */
+    border: none; /* Remove the border */
+    color: white; /* Set the text color */
+    padding: 12px 24px; /* Set the padding */
+    text-align: center; /* Center the text */
+    text-decoration: none; /* Remove text underline */
+    display: inline-block; /* Set the display to inline-block */
+    font-size: 16px; /* Set the font size */
+    border-radius: 20px; /* Set the border radius */
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25); /* Set the shadow */
+    transition: background-color 0.3s ease; /* Add a transition effect */
+}
+
+    .button:hover {
+        background-color: #333; /* Change the background color on hover */
+    }
+
+    .button:active {
+        background-color: #222; /* Change the background color when clicked */
+        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25); /* Reduce the shadow when clicked */
+    }
