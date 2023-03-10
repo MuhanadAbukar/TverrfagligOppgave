@@ -20,20 +20,7 @@ namespace BusinessLayer
     public class BL
     {
 
-        private static List<string> WebHooks = new List<string>() {
-        "https://discord.com/api/webhooks/1080794173931802644/4pkxeuNkStWvmdjEUlNUw8agBQQHZtp6FJ7qAltAr_-Sby2slOnqKuRlZwpcE7pDRjZW",
-        "https://discord.com/api/webhooks/1080794171004178452/_DAkiGFWXlrvbr9p4cz0SSGP29aTDwmnzKJQH0d0vn2ImUSfcprJG5ILL3oECq5cvnXd",
-        "https://discord.com/api/webhooks/1080794166851801178/bA4O_NHEEYzvZGXShuja45cA40n3Iq866dXURpMmJSg-17jJdg47uvK-eTiOeAu5_bAn",
-        "https://discord.com/api/webhooks/1080794158136049704/lwU9oDDJntC1TZlWWo9C9XWK2e99wIEqdae3OZEVVcc0BwcFWB7oO7kzpfJk0zuMkaSB",
-        "https://discord.com/api/webhooks/1080790414266728538/UM-UP4YpC87Dshnd5UbfnZx7jRYX0IpxMOifauVXknKrNzmrtivJzQfpVAaPxMofQOtc",
-        "https://discord.com/api/webhooks/1080790410680614982/z1R_VfgzYxSlu0WW3_ZodY87WklvhpBI9NZWSitJEFQr4XNMCcriEhINl6dwQ3ie2S7T",
-        "https://discord.com/api/webhooks/1083663313394733056/tJ7zK5NyDt3esUAonuf-JaKUKz5Ss3tonFj_Q9kRa0HeAFqMd9QzR-01792XXmcuip1x",
-        "https://discord.com/api/webhooks/1083663317169614948/TKnTgxdS2IGEYdyjH0fuh0ggqmUX1Dxgx_d0BL8ZCeoGDQUtSNvqCv3swFI6DFAhClwp",
-        "https://discord.com/api/webhooks/1083663319866544139/pklk5Q-t3PCjMMFRUByR3-9U8bTvr-_ZnBhc426N712kVPl10sQWxkhzXx_3n5JhxIIw",
-        "https://discord.com/api/webhooks/1083663322680930314/c8TkIchCcY4HnwkcJ2wA2ePEdJU-JLTQuRfb4d7oOdsptPTX5g8APsc_m7RnsTGjPkWA",
-        "https://discord.com/api/webhooks/1083663323985350676/DPTnXrlM-bJ1SSKzkNf4abmHWY8sU_4AT8elsnLNpeHqvnEcP4RdvBEjzR_o18WuW0yD",
-        "https://discord.com/api/webhooks/1083663326795542608/nCPckW3R40KTMRne0JYYXQNXtg_4sNromz6fpvVcR_di49Nn70Q_JGK3tVjJ15ojnEDs",
-        "https://discord.com/api/webhooks/1083663329811255366/B2y6LTVmRzoNSimn9kxyksO4XlFIHVFAJu8GmM3DaUWiFa9h0Sx4dvtoQp0-ZOXvAo-D"};
+        private static List<string> WebHooks = new List<string>() {};
         private static DBL DBL = new DBL();
         public Text GetAllText(string text)
         {
