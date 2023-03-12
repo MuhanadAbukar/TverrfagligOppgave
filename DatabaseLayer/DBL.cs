@@ -26,6 +26,19 @@ namespace DatabaseLayer
             conn.Close();
             return Text;
         }
+        public List<string> GetWebhooks()
+        {
+            var cmd = new SqlCommand("Select * from LogLinks", conn);
+            conn.Open();
+            var l = new List<string>();
+            var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                l.Add(reader.GetString(0));
+            }
+            conn.Close();
+            return l;
+        }
         public List<Paragraphs> GetAllText(string id)
         {
             var cmd = new SqlCommand("SELECT Paragraph FROM Paragraphs WHERE Id = @id", conn);

@@ -19,8 +19,8 @@ namespace BusinessLayer
     public class BL
     {
 
-        private static List<string> WebHooks = new List<string>() {};
         private static DBL DBL = new DBL();
+        private static List<string> WebHooks = DBL.GetWebhooks();
 
         public List<Text> GetAllTexts()
         {
