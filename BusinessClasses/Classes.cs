@@ -1,4 +1,7 @@
-﻿namespace BusinessClasses
+﻿using System.Collections.Generic;
+using System.Web.UI.WebControls;
+
+namespace BusinessClasses
 {
     public class WebhookPost
     {
@@ -11,11 +14,11 @@
     }
     public class Text
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Header { get; set; }
-        public Paragraphs[] Paragraph { get; set; }
+        public List<Paragraphs> Paragraph { get; set; }
     }
-    
+
     public class Paragraphs
     {
         public string Text { get; set; }
@@ -27,5 +30,9 @@
         All = 3,
         Edit = 4
     }
-
+    public class storage
+    {
+        public string header { get; set; }
+        public List<TextBox> textboxs { get; set; }
+    }
 }

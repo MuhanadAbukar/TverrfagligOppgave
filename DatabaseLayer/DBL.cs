@@ -1,4 +1,5 @@
 ﻿using BusinessClasses;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
@@ -8,10 +9,26 @@ namespace DatabaseLayer
     {
         private static string connstr = "Data Source=itaserver;Initial Catalog=MuhanadOppgaveSkrive;Persist Security Info=True;User ID=muhanadharvester;Password=muhanad123";
         private static SqlConnection conn = new SqlConnection(connstr);
-       
-        public Text GetAllText(string id)
+        public List<Text> GetAllHeaders()
         {
-            var cmd = new SqlCommand("SELECT Paragraph FROM Paragraphs WHERE TextId = @id", conn);
+            var cmd = new SqlCommand("SELECT * from Tekst", conn);
+            conn.Open();
+            var Text = new List<Text>();
+            var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                var txt = new Text();
+                txt.Header = reader["Header"].ToString();
+                txt.Id = reader["Id"].ToString();
+                Text.Add(txt);
+            }
+            reader.Close();
+            conn.Close();
+            return Text;
+        }
+        public List<Paragraphs> GetAllText(string id)
+        {
+            var cmd = new SqlCommand("SELECT Paragraph FROM Paragraphs WHERE Id = @id", conn);
             cmd.Parameters.AddWithValue("id", id);
             conn.Open();
             var reader = cmd.ExecuteReader();
@@ -25,41 +42,60 @@ namespace DatabaseLayer
                 paragraphs.Add(paragraph);
             }
             reader.Close();
-            cmd = new SqlCommand("SELECT Id, Header FROM Tekst WHERE Id = @id", conn);
-            reader = cmd.ExecuteReader();
-            var text = new Text();
-            if (reader.Read())
-            {
-                text.Id = (int)reader["Id"];
-                text.Header = (string)reader["Header"];
-                text.Paragraph = paragraphs.ToArray();
-            }
-
-            reader.Close();
             conn.Close();
-            return text;
+            return paragraphs;
         }
-        public int CreateNewText(string Header, string Paragraph)
+        public string CreateNewText(Text text)
         {
-            var id = 0;
-            var cmd = new SqlCommand("insert into tekst (header, paragraph) output inserted.id values (@header, @paragraph)", conn);
-            cmd.Parameters.AddWithValue("header", Header);
-            cmd.Parameters.AddWithValue("paragraph", Paragraph);
+            var cmd = new SqlCommand("insert into tekst  output inserted.id values (@id,@header)", conn);
+            cmd.Parameters.AddWithValue("@header", text.Header);
+            cmd.Parameters.AddWithValue("@id", Guid.NewGuid().ToString());
+
             conn.Open();
-            id = (int)cmd.ExecuteScalar();
+            var tekstId = cmd.ExecuteScalar().ToString();
             conn.Close();
-            return id;
+            cmd = new SqlCommand("insert into paragraphs (id, paragraph) values (@id, @paragraph)", conn);
+            conn.Open();
+            foreach (var paragraph in text.Paragraph)
+            {
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@id", tekstId);
+                cmd.Parameters.AddWithValue("@paragraph", paragraph.Text);
+                cmd.ExecuteNonQuery();
+            }
+            conn.Close();
+            return tekstId;
         }
 
-        public void UpdateTextEntry(string textid, string header, string paragraph)
+
+        public void UpdateTextEntry(string textid, Text txt)
         {
-            var cmd = new SqlCommand("update tekst set header=@header,paragraph=@paragraph where id=@id", conn);
-            cmd.Parameters.AddWithValue("header", header);
+            
+
+            var cmd = new SqlCommand("delete from paragraphs where id=@id", conn);
             cmd.Parameters.AddWithValue("id", textid);
-            cmd.Parameters.AddWithValue("paragraph", paragraph);
             conn.Open();
             cmd.ExecuteNonQuery();
             conn.Close();
+            cmd.Parameters.Clear();
+            conn.Open();
+            foreach (Paragraphs pgh in txt.Paragraph)
+            {
+                cmd = new SqlCommand("insert into Paragraphs values(@id,@text)", conn);
+                cmd.Parameters.AddWithValue("id", textid);
+                cmd.Parameters.AddWithValue("text", pgh.Text);
+                cmd.ExecuteNonQuery();
+                cmd.Parameters.Clear();
+            }
+            conn.Close();
+            cmd.Parameters.Clear();
+            cmd = new SqlCommand("update tekst set header = @header where id=@id", conn);
+            cmd.Parameters.AddWithValue("header", txt.Header);
+            cmd.Parameters.AddWithValue("id", textid);
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
+
         }
         public void DeleteTextEntry(string textid)
         {

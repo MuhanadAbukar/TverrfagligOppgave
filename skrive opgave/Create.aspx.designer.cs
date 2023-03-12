@@ -51,22 +51,13 @@ namespace skrive_opgave
         protected global::System.Web.UI.WebControls.TextBox Header;
 
         /// <summary>
-        /// Label2 control.
+        /// CreateParagraph control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
-
-        /// <summary>
-        /// Paragraph control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Paragraph;
+        protected global::System.Web.UI.WebControls.Button CreateParagraph;
 
         /// <summary>
         /// CreateButton control.
@@ -76,5 +67,14 @@ namespace skrive_opgave
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button CreateButton;
+
+        /// <summary>
+        /// ReturnButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ReturnButton;
     }
 }

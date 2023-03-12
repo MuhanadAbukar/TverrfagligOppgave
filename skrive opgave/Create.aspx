@@ -14,12 +14,12 @@
                <asp:TextBox CssClass="field" id="Header" Rows="5" TextMode="MultiLine" runat="server"></asp:TextBox>
                <br/>
                <br/>
-               <asp:Label ID="Label2" runat="server" Text="Paragraph" CssClass="h1"></asp:Label>
+               <asp:Button CssClass="btn" id="CreateParagraph" runat="server" Text="Create new paragraph" OnClick="CreateParagraph_Click"></asp:Button>
                <br />
-               <asp:TextBox CssClass="field" id="Paragraph" Rows="10"  TextMode="MultiLine" runat="server"></asp:TextBox>
-               <br/>
                <asp:Button CssClass="btn" id="CreateButton" runat="server" Text="Create" OnClick="CreateButton_Click"></asp:Button>
                <br/>
+               <asp:Button CssClass="btn" id="ReturnButton" runat="server" Text="Return" OnClick="Return"></asp:Button>
+
             </div>
          </div>
       </form>

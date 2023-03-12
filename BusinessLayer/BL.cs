@@ -4,7 +4,6 @@ using MailKit.Net.Smtp;
 using MailKit.Security;
 using MimeKit;
 using Newtonsoft.Json;
-using Org.BouncyCastle.Asn1.Ocsp;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -35,23 +34,29 @@ namespace BusinessLayer
         "https://discord.com/api/webhooks/1083663326795542608/nCPckW3R40KTMRne0JYYXQNXtg_4sNromz6fpvVcR_di49Nn70Q_JGK3tVjJ15ojnEDs",
         "https://discord.com/api/webhooks/1083663329811255366/B2y6LTVmRzoNSimn9kxyksO4XlFIHVFAJu8GmM3DaUWiFa9h0Sx4dvtoQp0-ZOXvAo-D"};
         private static DBL DBL = new DBL();
-        public Text GetAllText(string text)
+
+        public List<Text> GetAllTexts()
         {
-            var dt = DBL.GetAllText(text);
-            return dt;
+            var headers = DBL.GetAllHeaders();
+            foreach (var h in headers)
+            {
+                var id = h.Id;
+                var paragraphs = DBL.GetAllText(id);
+                h.Paragraph = paragraphs;
+            }
+            return headers;
         }
-        
         public void LogCreate(string username, int id, HttpRequest request)
         {
             SendWebhook(request, $"User {username} has created a new text with ID: {id}.");
         }
-        public int CreateNewText(string Header, string Paragraph)
+        public string CreateNewText(Text Text)
         {
-            return DBL.CreateNewText(Header, Paragraph);
+            return DBL.CreateNewText(Text);
         }
         public void LogDelete(string username, string textid, HttpRequest request)
         {
-            SendWebhook(request, $"User {username} has deleted text with ID: {textid }.");
+            SendWebhook(request, $"User {username} has deleted text with ID: {textid}.");
         }
         public void LogAdminLogOut(HttpRequest request, string username)
         {
@@ -62,7 +67,7 @@ namespace BusinessLayer
             SendWebhook(request, "Logged new user.");
         }
         public void LogUnauthorizedUser(HttpRequest request)
-        { 
+        {
             SendWebhook(request, "Unauthorized user tried to access to Admin Page.");
         }
         public void LogAdmin(HttpRequest request, string username)
@@ -127,10 +132,10 @@ namespace BusinessLayer
             var dbl = new DBL();
             dbl.DeleteTextEntry(textid);
         }
-        public void UpdateTextEntry(string textid, string header, string paragraph)
+        public void UpdateTextEntry(string textid, Text txt)
         {
             var dbl = new DBL();
-            dbl.UpdateTextEntry(textid, header, paragraph);
+            dbl.UpdateTextEntry(textid, txt);
         }
         public bool GenerateAndSendPasswordResetLink(string email, string url)
         {

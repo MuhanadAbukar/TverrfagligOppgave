@@ -1,6 +1,7 @@
 ﻿using BusinessLayer;
 using Microsoft.AspNetCore.Authorization;
 using System;
+using System.Linq;
 using System.Web.Security;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
@@ -23,7 +24,7 @@ namespace skrive_opgave
             form1.Controls.Add(returnbutton);
             CheckIfAuthenticated();
             var bl = new BL();
-            var everything = bl.GetAllText();
+            var everything = bl.GetAllTexts();
             foreach (var Text in everything)
             {
                 form1.Controls.Add(new Label() { Text = $"Text ID: {Text.Id}", CssClass = "h1" });
@@ -34,7 +35,7 @@ namespace skrive_opgave
                 form1.Controls.Add(new HtmlGenericControl("br"));
                 form1.Controls.Add(new Label() { Text = $"Paragraph", CssClass = "h1" });
                 form1.Controls.Add(new HtmlGenericControl("br"));
-                form1.Controls.Add(new TextBox() { Text = Text.Paragraph, ID = Text.Id.ToString() + "p", TextMode = TextBoxMode.MultiLine, Height = 250, Width = 320, CssClass = "field" });
+                form1.Controls.Add(new TextBox() { Text = string.Join("\n\n", Text.Paragraph.Select(x => x.Text).ToList()), ID = Text.Id.ToString() + "p", ReadOnly = true, TextMode = TextBoxMode.MultiLine, Height = 250, Width = 320, CssClass = "field" }); ;
                 form1.Controls.Add(new HtmlGenericControl("br"));
                 var btn = new Button
                 {
@@ -57,7 +58,7 @@ namespace skrive_opgave
             var textid = btn.ID;
             var bl = new BL();
             bl.DeleteTextEntry(textid);
-            bl.LogDelete(bl.GetUsernameOfUser(User), textid,Request);
+            bl.LogDelete(bl.GetUsernameOfUser(User), textid, Request);
             Response.Redirect(Request.RawUrl);
         }
         private void CheckIfAuthenticated()

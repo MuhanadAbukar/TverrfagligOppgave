@@ -9,11 +9,11 @@
 </head>
 <body>
     <center>
-    
-        <div class="box">
-            <div class="content">
-                    <form id="form1" runat="server">
-                    </form>
+        <div class="box" runat="server">
+            <div class="content" runat="server">
+                 <form id="form1" runat="server">
+
+                 </form>
             </div>
         </div>
     </center>
